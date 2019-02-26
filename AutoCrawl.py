@@ -1,6 +1,7 @@
 from txtParser import *
 import os
 
+
 def AutoCrawl(url):
 	command="scrapy crawl Recipe -a url="+url
 	os.system(command)
@@ -15,6 +16,7 @@ def AutoCrawl(url):
 		return None
 
 
-# AutoCrawl("https://www.allrecipes.com/recipe/270307/moroccan-chicken-thighs/")
+
+AutoCrawl("https://www.allrecipes.com/recipe/229931/marinated-mushrooms/")
 # AutoCrawl("https://www.allrecipes.com/recipe/246628/spaghetti-cacio-e-pepe/")
 # AutoCrawl("https://www.allrecipes.com/recipe/255633/cheesy-cauliflower-pizza-crust/")

@@ -6,17 +6,15 @@ sys.path.append(os.path.abspath("/Users/manshanlin/anaconda3/lib/python3.6/site-
 from fake_useragent import UserAgent
 # -*- coding: utf-8 -*-
 import random
-from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 class RotateUserAgentMiddleware(UserAgentMiddleware):
     def __init__(self, user_agent=''):
         self.user_agent = user_agent
 
     def process_request(self, request, spider):
-        #这句话用于随机选择user-agent
         ua = random.choice(self.user_agent_list)
         if ua:
-            #print('User-Agent:'+ua)
             request.headers.setdefault('User-Agent', ua)
 
     #the default user_agent_list composes chrome,I E,firefox,Mozilla,opera,netscape

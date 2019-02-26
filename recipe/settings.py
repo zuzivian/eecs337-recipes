@@ -33,7 +33,7 @@ PROXIES = [
 ]
 COOKIES_ENABLES=False
 DOWNLOADER_MIDDLEWARES = {  
-            'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,  
+            'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware' : None,  
             'recipe.rotate_useragent.RotateUserAgentMiddleware' :543
         }  
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
@@ -43,7 +43,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 3
-LOG_ENABLED=False
+LOG_ENABLED=True
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -81,7 +81,7 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'recipe.pipelines.RecipePipeline': 300,
+#    'recipe.pipelines.recipeRecipePipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
