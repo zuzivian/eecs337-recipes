@@ -17,6 +17,6 @@ def AutoCrawl(url):
 
 
 
-AutoCrawl("https://www.allrecipes.com/recipe/229931/marinated-mushrooms/")
+#AutoCrawl("https://www.allrecipes.com/recipe/229931/marinated-mushrooms/")
 # AutoCrawl("https://www.allrecipes.com/recipe/246628/spaghetti-cacio-e-pepe/")
 # AutoCrawl("https://www.allrecipes.com/recipe/255633/cheesy-cauliflower-pizza-crust/")
