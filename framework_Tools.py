@@ -56,5 +56,5 @@ def Transformation(category):
 
 #print(GetData("https://www.allrecipes.com/recipe/8144/mardi-gras-king-cake/"))
 """ Test Tools (to be removed)"""
-url = 'https://www.allrecipes.com/recipe/8144/mardi-gras-king-cake/'
+url = 'https://www.allrecipes.com/recipe/261325/roasted-eggplant-pastitsio/'
 print(GetTools(url))
