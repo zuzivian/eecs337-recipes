@@ -8,7 +8,7 @@ def GetData(url):
 			print('Recipe File already exists')
 			return fp.readlines()
 
-	#if is a new url crawled the data an 
+	#if is a new url crawled the data an
 	else:
 		print('New Recipe!')
 		data=AutoCrawl(url)
@@ -17,7 +17,7 @@ def GetData(url):
 def GetIngredients(text):
 	"""
 	Return a dictionary contains with Ingredient information
-	This dictionary includes keys: 
+	This dictionary includes keys:
 	name/quantity/measurement/Descriptor(optional)/Preparation(optional)
 	"""
 	return {}
@@ -34,7 +34,7 @@ def GetMethods(text):
 	This dictionary includes 2 keys: primary(primary methods such as sauté, broil, boil, poach, etc.)
 	and other(Other cooking methods used(e.g. chop, grate, stir, shake, mince, crush, squeeze, etc.))
 	"""
-	
+
 	return {}
 
 
@@ -51,4 +51,4 @@ def Transformation(category):
 	"""waiting for update"""
 
 
-print(GetData("https://www.allrecipes.com/recipe/150306/the-best-chicken-fried-steak/"))
+print(GetData("https://www.allrecipes.com/recipe/219981/crab-stuffed-lobster-tail/"))
