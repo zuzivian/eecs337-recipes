@@ -2,10 +2,6 @@
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk import bigrams, trigrams
-import json
-from pprint import pprint
-import os
-
 from helpers import *
 from AutoCrawl import *
 
