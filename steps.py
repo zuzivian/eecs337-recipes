@@ -2,6 +2,13 @@ import nltk
 from pprint import pprint
 
 
+def generate_directions(step_list):
+    steps = []
+    for step in step_list:
+        steps.append(" ".join([substep['raw'] for substep in step]))
+    text= "\n".join(steps)
+    return text
+
 def get_steps(text, methods, ingredients, tools):
     step_list = []
     for step in text.split("\n"):
@@ -17,6 +24,7 @@ def get_steps(text, methods, ingredients, tools):
             substep['raw'] = sentence
             substep['methods'] = [method for method in methods if method in tokens]
             # step['method'] = step['methods'][0]
+            # substep['ingredients'] = [ingredient.name for ingredient in ingredients if ingredient.name in tokens]
             substep['ingredients'] = [ingredient for ingredient in ingredients if ingredient in tokens]
             substep['tools'] = [tool for tool in tools if tool in tokens]
             substep['times'] = get_times(sentence)
