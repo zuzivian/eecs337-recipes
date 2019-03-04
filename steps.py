@@ -11,7 +11,7 @@ def generate_directions(step_list):
 
 def get_steps(text, methods, ingredients, tools):
     step_list = []
-    methods = methods.other.append(methods.primary)
+    methods = methods['other'].append(methods['primary'])
     for step in text.split("\n"):
         if not step:
             continue

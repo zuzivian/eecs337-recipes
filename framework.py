@@ -3,6 +3,7 @@ from AutoCrawl import *
 from steps import *
 from findTools import *
 from ingredients import *
+from pprint import pprint
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
@@ -29,7 +30,7 @@ def GetIngredients(text):
 def GetTools(text):
 	"""Return a list of tools such as pans graters"""
 	data = [x.strip() for x in text]
-    data = [x.lower() for x in data] # convert to lower case
+	data = [x.lower() for x in data] # convert to lower case
 	return findTools(data)
 
 
@@ -41,8 +42,8 @@ def GetMethods(text):
 	"""
 
 	return {
-		primary: "saute",
-		other: ["chop", "grate"]
+		'primary': "saute",
+		'other': ["chop", "grate"]
 	}
 
 
@@ -57,4 +58,6 @@ def Transformation(category):
 	"""waiting for update"""
 
 
-print(GetData("https://www.allrecipes.com/recipe/219981/crab-stuffed-lobster-tail/"))
+text = GetData("https://www.allrecipes.com/recipe/180735/traditional-style-vegan-shepherds-pie/")
+pprint(text)
+pprint(GetSteps(text))
