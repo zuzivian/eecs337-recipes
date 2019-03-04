@@ -88,6 +88,18 @@ def FormIngredientList(filepath):
 	print(res)
 	return res
 
+def FormIngredientList1(text):
+	res=[]
+
+	for line in text:
+		if(line==('Ingredients:'+'\n')):
+			continue
+		if line==('Directions:'+'\n'):
+			break
+		if len(line.split())!=0:
+			res.append(FormIngredientDic(line))
+	return res
+
 FormIngredientList('data/white-cheese-chicken-lasagna.txt')
 
 
