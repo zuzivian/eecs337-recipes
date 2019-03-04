@@ -40,7 +40,10 @@ def GetMethods(text):
 	and other(Other cooking methods used(e.g. chop, grate, stir, shake, mince, crush, squeeze, etc.))
 	"""
 
-	return {}
+	return {
+		primary: "saute",
+		other: ["chop", "grate"]
+	}
 
 
 def GetSteps(text):

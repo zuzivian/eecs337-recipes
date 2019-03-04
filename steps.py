@@ -11,6 +11,7 @@ def generate_directions(step_list):
 
 def get_steps(text, methods, ingredients, tools):
     step_list = []
+    methods = methods.other.append(methods.primary)
     for step in text.split("\n"):
         if not step:
             continue
@@ -23,9 +24,8 @@ def get_steps(text, methods, ingredients, tools):
             tokens = nltk.word_tokenize(sentence.lower())
             substep['raw'] = sentence
             substep['methods'] = [method for method in methods if method in tokens]
-            # step['method'] = step['methods'][0]
-            # substep['ingredients'] = [ingredient.name for ingredient in ingredients if ingredient.name in tokens]
-            substep['ingredients'] = [ingredient for ingredient in ingredients if ingredient in tokens]
+            substep['ingredients'] = [ingredient.name for ingredient in ingredients if ingredient.name in tokens]
+            #substep['ingredients'] = [ingredient for ingredient in ingredients if ingredient in tokens]
             substep['tools'] = [tool for tool in tools if tool in tokens]
             substep['times'] = get_times(sentence)
             substep['conditions'] = get_conditions(sentence)
