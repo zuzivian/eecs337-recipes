@@ -1,5 +1,6 @@
 from helpers import *
 from AutoCrawl import *
+from steps import *
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
@@ -42,7 +43,7 @@ def GetMethods(text):
 
 def GetSteps(text):
 	"""Return a list of steps that each consist of ingredients, tools, methods, and times"""
-	return []
+	return get_steps(text, GetMethods(text), GetIngredients(text), GetTools(text))
 
 
 
