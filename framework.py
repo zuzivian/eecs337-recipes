@@ -1,6 +1,8 @@
 from helpers import *
 from AutoCrawl import *
 from steps import *
+from findTools import *
+from ingredients import *
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
@@ -17,16 +19,18 @@ def GetData(url):
 
 def GetIngredients(text):
 	"""
-	Return a dictionary contains with Ingredient information
+	Return a list of dictionaries containing Ingredient information
 	This dictionary includes keys:
 	name/quantity/measurement/Descriptor(optional)/Preparation(optional)
 	"""
-	return {}
+	return FormIngredientList1(text)
 
 
 def GetTools(text):
 	"""Return a list of tools such as pans graters"""
-	return []
+	data = [x.strip() for x in text]
+    data = [x.lower() for x in data] # convert to lower case
+	return findTools(data)
 
 
 def GetMethods(text):
@@ -37,8 +41,6 @@ def GetMethods(text):
 	"""
 
 	return {}
-
-
 
 
 def GetSteps(text):
