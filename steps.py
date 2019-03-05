@@ -11,8 +11,9 @@ def generate_directions(step_list):
 
 def get_steps(text, methods, ingredients, tools):
     step_list = []
-    # methods = methods['other'].append(methods['primary'])
-    methods = open('data/methods.txt').read().split("\n")[:-1]
+    methods['other'].append(methods['primary'])
+    methods = methods['other']
+    # methods = open('data/methods.txt').read().split("\n")[:-1]
     in_ingredient_section = True
     for step in text:
         if "Directions" in step:
