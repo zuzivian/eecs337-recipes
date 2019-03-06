@@ -107,6 +107,24 @@ def getQuantity(line):
 		return 'NoItem'
 
 
+def convertStrToFloat(str1):
+	try:
+		res=float(str1)
+		return res
+
+	except:
+		if len(str1.split())==1:
+			l=str1.split('/')
+			return float(l[0])/float(l[1])
+		else:
+			res=0
+			l=str1.split()
+			res+=float(l[0])
+			l1=l[1].split('/')
+			res+=float(l1[0])/float(l1[1])
+			return res
+
+
 
 def getMeasurement(line):
 	for i in range(0,len(line.split()[0:5])):
@@ -115,7 +133,6 @@ def getMeasurement(line):
 				return (i,j)
 	return 'NoItem'
 
-print(getQuantity('1 (10 3/4 ounces) MEAT'))
 
 
 
