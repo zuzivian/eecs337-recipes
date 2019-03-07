@@ -4,6 +4,7 @@ from steps import *
 from findTools import *
 from ingredients import *
 from pprint import pprint
+from Asianstyle import *
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
@@ -24,6 +25,7 @@ def GetIngredients(text):
 	This dictionary includes keys:
 	name/quantity/measurement/Descriptor(optional)/Preparation(optional)
 	"""
+	# print(FormIngredientList1(text))
 	return FormIngredientList1(text)
 
 
@@ -58,6 +60,10 @@ def Transformation(category):
 	"""waiting for update"""
 
 
-text = GetData("https://www.allrecipes.com/recipe/180735/traditional-style-vegan-shepherds-pie/")
-pprint(text)
-pprint(GetSteps(text))
+text = GetData("https://www.allrecipes.com/recipe/220752/rice-pilaf-with-raisins-and-veggies/")
+steps=TransToAsian('Korean',GetIngredients(text),GetSteps(text))
+for step in steps:
+	for sub in step:
+		if sub:
+			print(sub['raw'])
+
