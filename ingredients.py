@@ -78,6 +78,30 @@ def getName(line):
 		return ' '.join(i for i in line.split()[index:])
 
 	return None
+
+def getPreparation(line):
+	if ',' in line:
+		index=line.index(',')
+		print(line[index+2:])
+		return line[index+2:].replace('\n','')
+	else:
+		text = nltk.word_tokenize(line)
+		res=''
+		lib=nltk.pos_tag(text)
+		for i in lib:
+			if i[1]=='VBD':
+				res+=i[0]
+				res+=' '
+
+		print(res)
+		return res.replace('\n','')
+
+
+
+
+
+
+
 def getQuantity(line):
 	temp=getMeasurement(line)
 	if temp!='NoItem':
@@ -145,6 +169,7 @@ def FormIngredientDic(line):
 		dic['measurement']='NoItem'
 	else:
 		dic['measurement']=temp[1]
+	dic['Preparation']=getPreparation(line)
 	print(dic)
 	return dic
 
@@ -157,14 +182,13 @@ def FormIngredientList(filepath):
 		for line in f.readlines():
 			if 'Directions:'in line:
 				return res
-			if len(line.split())<=1:
+			if len(line.split())<=1 or ':'in line:
 				continue
 			if(line==('Ingredients:'+'\n')):
 				continue
 
 			if len(line.split())!=0:
 				res.append(FormIngredientDic(line))
-	print(res)
 	return res
 
 def FormIngredientList1(text):
@@ -173,7 +197,7 @@ def FormIngredientList1(text):
 	for line in text:
 		if line==('Directions:'+'\n'):
 			return res
-		if len(line.split())<=1:
+		if len(line.split())<=1 or ':'in line:
 			continue
 		if(line==('Ingredients:'+'\n')):
 			continue
@@ -182,7 +206,8 @@ def FormIngredientList1(text):
 			res.append(FormIngredientDic(line))
 	return res
 
-FormIngredientList('data/mardi-gras-king-cake.txt')
+
+FormIngredientList('data/roasted-eggplant-pastitsio.txt')
 
 
 
