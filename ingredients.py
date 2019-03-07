@@ -94,6 +94,8 @@ def getPreparation(line):
 				res+=' '
 
 		print(res)
+		if res=='':
+			return 'NoItem'
 		return res.replace('\n','')
 
 
