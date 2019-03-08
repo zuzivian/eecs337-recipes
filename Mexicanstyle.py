@@ -39,9 +39,9 @@ def TransToMexican(ingredients,steps):
                 isMexican=True
                 break
             if containCooking(substep, cooking):
-                ingredients.append({'name':'poblano peppers','quantity':'6','measurement':'NoItem','Preparation':'NoItem'})
+                ingredients.append({'name':'jalapenos','quantity':'6','measurement':'NoItem','Preparation':'NoItem'})
                 ingredients.append({'name':'chili pepper','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
-                substep['raw']+='Mix in jalapenos and chili powder.'
+                substep['raw']+=' Mix in jalapenos and chili powder.'
                 substep['ingredients'].append('jalapenos')
                 substep['ingredients'].append('chilli powder')
                 isMexican=True
@@ -58,7 +58,7 @@ def TransToMexican(ingredients,steps):
         ingredients.append({'name':'salsa verde', 'quantity':'1/4', 'measurement':'cup', 'Preparation':'NoItem'})
         ingredients.append({'name':'coriander', 'quantity':'1/8', 'measurement':'cup', 'Preparation':'NoItem'})
         steps.append(
-        [{'conditions': None,'ingredients': ['garlic','ginger'],
+        [{'conditions': None,'ingredients': ['salsa verde','coriander'],
         'methods': ['garnish'],'times': None,'tools':None,
         'raw': 'Serve with a side bowl of salsa verde and coriander to garnish.'
         }]
