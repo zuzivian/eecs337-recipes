@@ -88,8 +88,10 @@ def longestCookingMethod(sentences):
                 minimumtime = cookingtimestep
     return maincookingmethod
 
-def getMethodsDict(text, methodlist):
+def getMethodsDict(text):
     pri_method = longestCookingMethod(text)
+    list_methods = getLOfMethods('ListOfMethods.txt')
+    allmethods = [item.lower() for item in list_methods]
     all_methods = getVerbs(text)
     addi_method = isPrepMethod(methodlist, pri_method)
     methods_dict = {}
@@ -97,9 +99,8 @@ def getMethodsDict(text, methodlist):
     methods_dict['preparatory'] = addi_method
     return methods_dict
 
-list_methods = getLOfMethods('ListOfMethods.txt')
-allmethods = [item.lower() for item in list_methods]
-recipeText = GetData("https://www.allrecipes.com/recipe/219981/crab-stuffed-lobster-tail/")
-recipeDirecton = recipeText[recipeText.index('Directions:\n') + 1:len(recipeText)]
-
-getMethodsDict(recipeDirecton, allmethods)
+#list_methods = getLOfMethods('ListOfMethods.txt')
+#allmethods = [item.lower() for item in list_methods]
+#recipeText = GetData("https://www.allrecipes.com/recipe/219981/crab-stuffed-lobster-tail/")
+#recipeDirecton = recipeText[recipeText.index('Directions:\n') + 1:len(recipeText)]
+#getMethodsDict(recipeDirecton, allmethods)
