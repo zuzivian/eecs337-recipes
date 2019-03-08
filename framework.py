@@ -60,10 +60,9 @@ def Transformation(category):
 	"""waiting for update"""
 
 
-text = GetData("https://www.allrecipes.com/recipe/220752/rice-pilaf-with-raisins-and-veggies/")
-steps=TransToAsian('Korean',GetIngredients(text),GetSteps(text))
-for step in steps:
-	for sub in step:
-		if sub:
-			print(sub['raw'])
-
+# text = GetData("https://www.allrecipes.com/recipe/220752/rice-pilaf-with-raisins-and-veggies/")
+# steps=TransToAsian('Korean',GetIngredients(text),GetSteps(text))
+# for step in steps:
+# 	for sub in step:
+# 		if sub:
+# 			print(sub['raw'])
