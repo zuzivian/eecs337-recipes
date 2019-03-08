@@ -3,7 +3,7 @@ import nltk
 
 def generator(listofIngredientsDic):
 	res=''
-	resultlist
+	resultlist = []
 	for ingredient in listofIngredientsDic:
 		res=''
 		if ingredient['quantity']!='NoItem':
