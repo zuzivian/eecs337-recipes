@@ -16,7 +16,7 @@ def generator(listofIngredientsDic):
 					marker=1
 					break
 			if marker==0:
-				res+=ingredient['quantity']
+				res+=ingredient['Preparation']
 				res+=' '
 		if ingredient['measurement']!='NoItem':
 			res+=ingredient['measurement']
@@ -25,4 +25,7 @@ def generator(listofIngredientsDic):
 		resultlist.append(res)
 	return resultlist
 
-print(generator([{'name': 'chopped onions', 'quantity': '1 1/2', 'measurement': 'cup', 'Preparation': 'chopped '}]))
+print(generator([{'Preparation': 'chopped',
+  'measurement': 'NoItem',
+  'name': 'white onion,',
+  'quantity': '1/2'}]))
