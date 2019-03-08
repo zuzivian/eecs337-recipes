@@ -52,6 +52,24 @@ def replaceIngrInSteps(steps, replacementdict):
                         
     return steps
 
+def replaceIngrInIngrs(ingredients, replacementdict):
+    for item in ingredientlist:
+        if item['name'] in list(replacementdict.keys()):
+            print(item)
+            tobereplace = item['name']
+            item['name'] = replacementdict[tobereplace]
+                        
+    return ingredients
+
+def TransToVeggie(ingredients,steps):
+    rep_dict = ingredToVeg(ingredients)
+    if len(rep_dict) > 0:
+        newingr = replaceIngrInIngrs(ingredients, rep_dict)
+        newsteps = replaceIngrInSteps(steps, rep_dict)
+        return [newingr, newsteps]
+    else:
+        return [ingredientlist, stepsIns]
+
 masterdata = pd.DataFrame()
 datalist = []
 txtfilename = 'proteins.csv'
