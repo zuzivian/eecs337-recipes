@@ -11,9 +11,8 @@ def generate_directions(step_list):
 
 def get_steps(text, methods, ingredients, tools):
     step_list = []
-    methods['other'].append(methods['primary'])
-    methods = methods['other']
-    # methods = open('data/methods.txt').read().split("\n")[:-1]
+    methods = methods['primary'] + methods['other']
+    pprint(methods)
     in_ingredient_section = True
     for step in text:
         if "Directions" in step:
@@ -28,6 +27,7 @@ def get_steps(text, methods, ingredients, tools):
                 continue
             substep = {}
             tokens = nltk.word_tokenize(sentence.lower())
+            pprint(tokens)
             substep['raw'] = sentence
             substep['methods'] = [method for method in methods if method in tokens]
             substep['ingredients'] = [ingredient['name'] for ingredient in ingredients if ingredient['name'] in tokens]
