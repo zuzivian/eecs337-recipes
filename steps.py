@@ -66,6 +66,8 @@ def get_number_index(text, dir):
         index = text.rfind(num) if dir else text.find(num)
         if index > -1:
             indices.append(index)
+    if len(indices) == 0:
+        return 0
     return max(indices) if dir else min(indices)
 
 def get_punctuation_index(text, dir):
@@ -75,4 +77,6 @@ def get_punctuation_index(text, dir):
         index = text.rfind(punct) if dir else text.find(punct)
         if index > -1:
             indices.append(index)
+    if len(indices) == 0:
+        return 0
     return max(indices) if dir else min(indices)

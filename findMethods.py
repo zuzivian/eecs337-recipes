@@ -99,8 +99,6 @@ def getMethodsDict(text):
     methods_dict['preparatory'] = addi_method
     return methods_dict
 
-#list_methods = getLOfMethods('ListOfMethods.txt')
+list_methods = getLOfMethods('ListOfMethods.txt')
 #allmethods = [item.lower() for item in list_methods]
-#recipeText = GetData("https://www.allrecipes.com/recipe/219981/crab-stuffed-lobster-tail/")
-#recipeDirecton = recipeText[recipeText.index('Directions:\n') + 1:len(recipeText)]
-#getMethodsDict(recipeDirecton, allmethods)
+recipeText = GetData("https://www.allrecipes.com/recipe/270307/moroccan-chicken-thighs/")

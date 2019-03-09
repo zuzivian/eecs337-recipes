@@ -5,6 +5,9 @@ from findTools import *
 from ingredients import *
 from pprint import pprint
 from Asianstyle import *
+from IngredientsGenrator import *
+from vegTransform import *
+
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
@@ -42,11 +45,8 @@ def GetMethods(text):
 	This dictionary includes 2 keys: primary(primary methods such as sauté, broil, boil, poach, etc.)
 	and other(Other cooking methods used(e.g. chop, grate, stir, shake, mince, crush, squeeze, etc.))
 	"""
+	return {'primary':'','other':[]}
 
-	return {
-		'primary': "saute",
-		'other': ["chop", "grate"]
-	}
 
 
 def GetSteps(text):
@@ -55,14 +55,32 @@ def GetSteps(text):
 
 
 
-def Transformation(category):
+def Transformation(text,category):
 	"""category is the kind of transformation"""
 	"""waiting for update"""
+	if category in ['Thai','Korean']:
+		return TransToAsian(category,GetIngredients(text),GetSteps(text))
+
+	elif category=='vege':
+		masterdata = pd.DataFrame()
+		datalist = []
+		txtfilename = 'proteins.csv'
+
+		directory = "./data/" + txtfilename
+		masterdata = pd.read_csv(directory, delimiter=',', header = 0)
+
+		ingredientlist = GetIngredients(text)
+		stepsIns = GetSteps(text)
+		#replacementdict = ingredToVeg(ingredientlist)
+		#newsteps = replaceIngrInSteps(stepsIns, replacementdict)
+		return TransToVeggie(ingredientlist,stepsIns, masterdata)
 
 
-# text = GetData("https://www.allrecipes.com/recipe/220752/rice-pilaf-with-raisins-and-veggies/")
-# steps=TransToAsian('Korean',GetIngredients(text),GetSteps(text))
-# for step in steps:
-# 	for sub in step:
-# 		if sub:
-# 			print(sub['raw'])
+
+text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
+[new_ingredients, new_steps] = Transformation(text,'vege')
+
+pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
+
+
+

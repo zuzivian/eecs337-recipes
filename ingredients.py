@@ -82,7 +82,7 @@ def getName(line):
 def getPreparation(line):
 	if ',' in line:
 		index=line.index(',')
-		print(line[index+2:])
+
 		return line[index+2:].replace('\n','')
 	else:
 		text = nltk.word_tokenize(line)
@@ -93,7 +93,7 @@ def getPreparation(line):
 				res+=i[0]
 				res+=' '
 
-		print(res)
+
 		if res=='':
 			return 'NoItem'
 		return res.replace('\n','')
@@ -172,7 +172,8 @@ def FormIngredientDic(line):
 	else:
 		dic['measurement']=temp[1]
 	dic['Preparation']=getPreparation(line)
-	print(dic)
+
+
 	return dic
 
 

@@ -1,8 +1,7 @@
-from framework import *
+
 
 import pandas as pd
 from nltk import *
-from framework import *
 from ingredients import *
 from helpers import *
 from AutoCrawl import *
@@ -16,7 +15,7 @@ def proteinSub(input_protein, masterdata):
     replacement = masterdata[masterdata['protein'] == input_protein]['veg_closest'].item()
     return replacement
 
-def ingredToVeg(inglist):
+def ingredToVeg(inglist, masterdata):
     replacedict = {}
     for ingfull in inglist:
         print(ingfull)
@@ -53,16 +52,15 @@ def replaceIngrInSteps(steps, replacementdict):
     return steps
 
 def replaceIngrInIngrs(ingredients, replacementdict):
-    for item in ingredientlist:
+    for item in ingredients:
         if item['name'] in list(replacementdict.keys()):
-            print(item)
             tobereplace = item['name']
             item['name'] = replacementdict[tobereplace]
                         
     return ingredients
 
-def TransToVeggie(ingredients,steps):
-    rep_dict = ingredToVeg(ingredients)
+def TransToVeggie(ingredients,steps, masterdata):
+    rep_dict = ingredToVeg(ingredients, masterdata)
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)
         newsteps = replaceIngrInSteps(steps, rep_dict)
@@ -70,15 +68,16 @@ def TransToVeggie(ingredients,steps):
     else:
         return [ingredientlist, stepsIns]
 
-masterdata = pd.DataFrame()
-datalist = []
-txtfilename = 'proteins.csv'
+# masterdata = pd.DataFrame()
+# datalist = []
+# txtfilename = 'proteins.csv'
 
-directory = "./data//" + txtfilename
-masterdata = pd.read_csv(directory, delimiter=',', header = 0)
+# directory = "./data//" + txtfilename
+# masterdata = pd.read_csv(directory, delimiter=',', header = 0)
 
-text = GetData("https://www.allrecipes.com/recipe/150306/the-best-chicken-fried-steak/")
-ingredientlist = GetIngredients(text)
-stepsIns = GetSteps(text)
-replacementdict = ingredToVeg(ingredientlist)
-newsteps = replaceIngrInSteps(stepsIns, replacementdict)
+# text = GetData("https://www.allrecipes.com/recipe/150306/the-best-chicken-fried-steak/")
+# ingredientlist = GetIngredients(text)
+# stepsIns = GetSteps(text)
+# #replacementdict = ingredToVeg(ingredientlist)
+# #newsteps = replaceIngrInSteps(stepsIns, replacementdict)
+# TransToVeggie(ingredientlist,stepsIns)
