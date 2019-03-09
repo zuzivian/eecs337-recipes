@@ -74,6 +74,10 @@ def Transformation(text,category):
 		#replacementdict = ingredToVeg(ingredientlist)
 		#newsteps = replaceIngrInSteps(stepsIns, replacementdict)
 		return TransToVeggie(ingredientlist,stepsIns, masterdata)
+	elif category=='mexican':
+		TransToMexican(GetIngredients(text),GetSteps(text))
+	elif category=='healthy':
+		
 
 
 
