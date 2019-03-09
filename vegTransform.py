@@ -1,7 +1,6 @@
-
-
 import pandas as pd
 from nltk import *
+
 from ingredients import *
 from helpers import *
 from AutoCrawl import *
@@ -59,14 +58,20 @@ def replaceIngrInIngrs(ingredients, replacementdict):
                         
     return ingredients
 
-def TransToVeggie(ingredients,steps, masterdata):
+def loadTransformTable(directory):
+	transformTable = pd.DataFrame()
+	datalist = []
+	transformTable = pd.read_csv(directory, delimiter=',', header = 0)
+	return transformTable
+
+def TransToVeggie(ingredients, steps, masterdata):
     rep_dict = ingredToVeg(ingredients, masterdata)
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)
         newsteps = replaceIngrInSteps(steps, rep_dict)
         return [newingr, newsteps]
     else:
-        return [ingredientlist, stepsIns]
+        return [ingredients, steps]
 
 # masterdata = pd.DataFrame()
 # datalist = []
