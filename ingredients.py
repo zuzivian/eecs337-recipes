@@ -210,7 +210,7 @@ def FormIngredientList1(text):
 	return res
 
 
-FormIngredientList('data/roasted-eggplant-pastitsio.txt')
+
 
 
 
