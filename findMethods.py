@@ -33,9 +33,9 @@ def subsentence_verbs(subsentence):
             methodlist.append(tagtup[i][0].lower())
     return methodlist
 
-def getLOfMethods(fname):
-    with open(fname) as f:
-        content = f.readlines()
+def getLOfMethods(directory):
+    masterdata = loadTransformTable(directory)
+    content = list(masterdata['Method'])
     content = [x.strip() for x in content]
     content = [x.lower() for x in content]
     return content
@@ -93,7 +93,7 @@ def longestCookingMethod(sentences, allmethods):
     return maincookingmethod
 
 def getMethodsDict(text):
-    list_methods = getLOfMethods('ListOfMethods.txt')
+    list_methods = getLOfMethods('./dictionary/methods.csv')
     methodlist = [item.lower() for item in list_methods]
     recipeDirectons = getDirections(text)
     pri_method = longestCookingMethod(recipeDirectons, methodlist)

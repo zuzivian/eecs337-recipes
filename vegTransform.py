@@ -58,11 +58,13 @@ def replaceIngrInIngrs(ingredients, replacementdict):
                         
     return ingredients
 
+'''
 def loadTransformTable(directory):
 	transformTable = pd.DataFrame()
 	datalist = []
 	transformTable = pd.read_csv(directory, delimiter=',', header = 0)
 	return transformTable
+'''
 
 def TransToVeggie(ingredients, steps, masterdata):
     rep_dict = ingredToVeg(ingredients, masterdata)

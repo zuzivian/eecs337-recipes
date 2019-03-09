@@ -66,7 +66,7 @@ def Transformation(text,category):
 
 	elif category=='vege':
 		txtfilename = 'proteins.csv'
-		directory = "./data/" + txtfilename
+		directory = "./dictionary/" + txtfilename
 		masterdata = loadTransformTable(directory)
 		ingredientlist = GetIngredients(text)
 		stepsIns = GetSteps(text)
