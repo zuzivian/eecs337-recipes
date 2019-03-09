@@ -38,7 +38,7 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 			for substep in step:
 				if containCooking(substep,Addable):
 					materail=containCooking(substep,Addable)
-					s='Add coconut milk and fish sauce into the '+materail+'.'
+					s=' Add coconut milk and fish sauce into the '+materail+'.'
 					substep['raw']+=s
 					substep['raw']+=' Sprinkle with curry powder'
 					substep['ingredients'].append('coconut milk')
@@ -57,8 +57,8 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 						ingredients.append({'name':'fish sauce','quantity':'3','measurement':'teaspoon','Preparation':'NoItem'})
 						ingredients.append({'name':'coconut milk','quantity':'2','measurement':'teaspoon','Preparation':'NoItem'})
 						ingredients.append({'name':'curry paste','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
-						substep['raw']+='Mix with Coconut and Thai Fish Sauce.'
-						substep['raw']+='Sprinkle with curry powder'
+						substep['raw']+=' Mix with Coconut and Thai Fish Sauce.'
+						substep['raw']+=' Sprinkle with curry powder'
 						substep['ingredients'].append('coconut milk')
 						substep['ingredients'].append('fish sauce')
 						substep['ingredients'].append('curry powder')
@@ -91,7 +91,6 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 		ingredients.append({'name':'minced lemon grass','quantity':'2','measurement':'NoItem','Preparation':'minced'})
 		ingredients.append({'name':'diced herbs','quantity':'2','measurement':'teaspoon','Preparation':'diced'})
 		ingredients.append({'name':'fresh basil','quantity':'1/4','measurement':'cup','Preparation':'NoItem'})
-		#print(steps)
 		
 
 
@@ -104,7 +103,7 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 			for substep in step:
 				if containCooking(substep,Addable):
 					materail=containCooking(substep,Addable)
-					s='Add soy sauce into the '+materail+'. '
+					s=' Add soy sauce into the '+materail+'. '
 					substep['raw']+=s
 					substep['raw']+='Sprinkle with Korean chili pepper powder.'
 					substep['ingredients'].append('Korean chili pepper powder')
@@ -123,8 +122,8 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 					if containCooking(substep,cooking):
 						ingredients.append({'name':'soy sauce','quantity':'1','measurement':'teaspoon','Preparation':'NoItem'})
 						ingredients.append({'name':'Korean chili pepper powder','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
-						substep['raw']+='Mix with soy sauce.'
-						substep['raw']+='Sprinkle with Korean chili pepper powder'
+						substep['raw']+=' Mix with soy sauce.'
+						substep['raw']+=' Sprinkle with Korean chili pepper powder'
 						substep['ingredients'].append('soy sauce')
 						substep['ingredients'].append('Korean chili pepper powder')
 						isKorean=True
@@ -153,8 +152,7 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 	  		 }])
 		ingredients.append({'name':'diced ginger','quantity':'1/2','measurement':'cup','Preparation':'diced'})
 		ingredients.append({'name':'diced green onions','quantity':'2','measurement':'teaspoon','Preparation':'diced'})
-		#print(steps)
-	return ingredients
+	return [ingredients, steps]
 
 
 					

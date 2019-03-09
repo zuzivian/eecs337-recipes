@@ -25,7 +25,5 @@ def generator(listofIngredientsDic):
 		resultlist.append(res)
 	return resultlist
 
-print(generator([{'Preparation': 'chopped',
-  'measurement': 'NoItem',
-  'name': 'white onion,',
-  'quantity': '1/2'}]))
+
+
