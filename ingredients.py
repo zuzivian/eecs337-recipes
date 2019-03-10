@@ -1,13 +1,24 @@
 
 from helpers import *
 import nltk
-
+import numpy as np
+import pandas as pd
 s="!#$%&()*+,-.:;<=>?@[\]^_`{'~}"
 s+='"'
 measureList=[
 'teaspoon','tablespoon','cup','pint','quart',
 'gallon','pinch','dash','lb','pound','cube','head','clove','ounce','bunch'
 			]
+
+essentials=['beef','lamb','pork','chicken','fish','egg','tofu','tempeh','seitan','buttermilk']
+
+def get_essentials(line):
+	for i in line.split():
+		if i.lower() in essentials and len(i)>=3:
+			return i
+	return None
+
+
 
 # def getName(line):
 
@@ -170,6 +181,7 @@ def FormIngredientDic(line):
 	else:
 		dic['measurement']=temp[1]
 	dic['Preparation']=getPreparation(line)
+	dic['essential']=get_essentials(line)
 
 
 	return dic
@@ -177,20 +189,8 @@ def FormIngredientDic(line):
 
 
 
-def FormIngredientList(filepath):
-	res=[]
-	with open(filepath) as f:
-		for line in f.readlines():
-			if 'Directions:'in line:
-				return res
-			if len(line.split())<=1 or ':'in line:
-				continue
-			if(line==('Ingredients:'+'\n')):
-				continue
 
-			if len(line.split())!=0:
-				res.append(FormIngredientDic(line))
-	return res
+
 
 
 
@@ -210,7 +210,7 @@ def FormIngredientList1(text):
 	return res
 
 
-FormIngredientList('data/roasted-eggplant-pastitsio.txt')
+
 
 
 

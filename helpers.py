@@ -1,4 +1,6 @@
 import nltk
+import pandas as pd
+
 PunctuationList="!#$%&()*+,-.:;<=>?@[\]^_`{'~}"
 PunctuationList+='"'
 
@@ -14,3 +16,8 @@ def GetLatterWord(sen1, w1):
 			return ' '.join(K for K in word_list[i+1:] )
 	return None
 
+def loadTransformTable(directory):
+	transformTable = pd.DataFrame()
+	datalist = []
+	transformTable = pd.read_csv(directory, delimiter=',', header = 0)
+	return transformTable

@@ -2,6 +2,7 @@ from helpers import *
 from AutoCrawl import *
 from steps import *
 from findTools import *
+from findMethods import *
 from ingredients import *
 from pprint import pprint
 from Asianstyle import *
@@ -32,11 +33,13 @@ def GetIngredients(text):
 	return FormIngredientList1(text)
 
 
+
 def GetTools(text):
 	"""Return a list of tools such as pans graters"""
 	data = [x.strip() for x in text]
 	data = [x.lower() for x in data] # convert to lower case
 	return findTools(data)
+
 
 
 def GetMethods(text):
@@ -45,7 +48,7 @@ def GetMethods(text):
 	This dictionary includes 2 keys: primary(primary methods such as sauté, broil, boil, poach, etc.)
 	and other(Other cooking methods used(e.g. chop, grate, stir, shake, mince, crush, squeeze, etc.))
 	"""
-	return {'primary':'','other':[]}
+	return getMethodsDict(text)
 
 
 
@@ -60,20 +63,17 @@ def Transformation(text,category):
     """waiting for update"""
     if category in ['Thai','Korean']:
         return TransToAsian(category,GetIngredients(text),GetSteps(text))
-
+    
     elif category=='vege':
-        masterdata = pd.DataFrame()
-        datalist = []
         txtfilename = 'proteins.csv'
-
-        directory = "./data/" + txtfilename
-        masterdata = pd.read_csv(directory, delimiter=',', header = 0)
-
+        directory = "./dictionary/" + txtfilename
+        masterdata = loadTransformTable(directory)
         ingredientlist = GetIngredients(text)
         stepsIns = GetSteps(text)
-        #replacementdict = ingredToVeg(ingredientlist)
-        #newsteps = replaceIngrInSteps(stepsIns, replacementdict)
-        return TransToVeggie(ingredientlist,stepsIns, masterdata)
+        return TransToVeggie(ingredientlist, stepsIns, masterdata)
+    
+    elif category=='mexican':
+        TransToMexican(GetIngredients(text),GetSteps(text))
     
     elif category == 'healthy':
         ingredientlist = GetIngredients(text)
@@ -84,5 +84,10 @@ def Transformation(text,category):
 text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
 [new_ingredients, new_steps] = Transformation(text,'healthy')
 #pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
+#text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
+#[new_ingredients, new_steps] = Transformation(text,'vege')
+
+#pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
+
 
 

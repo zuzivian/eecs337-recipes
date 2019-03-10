@@ -1,7 +1,6 @@
 import pandas as pd
 from nltk import *
 
-from framework import *
 from ingredients import *
 from helpers import *
 from AutoCrawl import *
@@ -34,12 +33,17 @@ def subsentence_verbs(subsentence):
             methodlist.append(tagtup[i][0].lower())
     return methodlist
 
-def getLOfMethods(fname):
-    with open(fname) as f:
-        content = f.readlines()
+def getLOfMethods(directory):
+    masterdata = loadTransformTable(directory)
+    content = list(masterdata['Method'])
     content = [x.strip() for x in content]
     content = [x.lower() for x in content]
     return content
+
+def getDirections(text):
+    recipeText = ""
+    recipeText = text[text.index('Directions:\n') + 1:len(text)]
+    return recipeText
 
 def isCookingMethod(verblist, allmethods):
     methods = []
@@ -52,7 +56,7 @@ def isPrepMethod(verblist, cookingmethod):
     prepmethod = list(set(verblist) - set(cookingmethod))
     return prepmethod
 
-def mainIngCookingMethod(mainingr, sentences):
+def mainIngCookingMethod(mainingr, sentences, allmethods):
     cookingList = set()
     for sentence in sentences:
         if mainingr in sentence.lower():
@@ -76,7 +80,7 @@ def parse_max_cook_time(get_times_result):
             timevalue += 0
     return timevalue
 
-def longestCookingMethod(sentences):
+def longestCookingMethod(sentences, allmethods):
     minimumtime = 0
     for sentence in sentences:
         cookingtimestring = get_times(sentence)
@@ -89,16 +93,13 @@ def longestCookingMethod(sentences):
     return maincookingmethod
 
 def getMethodsDict(text):
-    pri_method = longestCookingMethod(text)
-    list_methods = getLOfMethods('ListOfMethods.txt')
-    allmethods = [item.lower() for item in list_methods]
-    all_methods = getVerbs(text)
+    list_methods = getLOfMethods('./dictionary/methods.csv')
+    methodlist = [item.lower() for item in list_methods]
+    recipeDirectons = getDirections(text)
+    pri_method = longestCookingMethod(recipeDirectons, methodlist)
+    all_methods = getVerbs(recipeDirectons)
     addi_method = isPrepMethod(methodlist, pri_method)
     methods_dict = {}
     methods_dict['primary'] = pri_method
-    methods_dict['preparatory'] = addi_method
+    methods_dict['other'] = addi_method
     return methods_dict
-
-list_methods = getLOfMethods('ListOfMethods.txt')
-#allmethods = [item.lower() for item in list_methods]
-recipeText = GetData("https://www.allrecipes.com/recipe/270307/moroccan-chicken-thighs/")
