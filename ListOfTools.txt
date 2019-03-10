@@ -93,9 +93,10 @@ Platters
 Wooden salad bowl
 Salad spinner
 Popcorn maker
-Liquid measuring cups
-Measuring cups
-Measuring spoons
+Liquid measuring cup
+Measuring cup
+Measuring spoon
+spoon
 Utensil holder
 Crock
 Garlic press
@@ -120,3 +121,7 @@ Spatula
 Wooden spoons
 Spray
 Cooking spray
+cooling rack
+cup
+plastic wrap
+damp cloth

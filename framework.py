@@ -56,31 +56,33 @@ def GetSteps(text):
 
 
 def Transformation(text,category):
-	"""category is the kind of transformation"""
-	"""waiting for update"""
-	if category in ['Thai','Korean']:
-		return TransToAsian(category,GetIngredients(text),GetSteps(text))
+    """category is the kind of transformation"""
+    """waiting for update"""
+    if category in ['Thai','Korean']:
+        return TransToAsian(category,GetIngredients(text),GetSteps(text))
 
-	elif category=='vege':
-		masterdata = pd.DataFrame()
-		datalist = []
-		txtfilename = 'proteins.csv'
+    elif category=='vege':
+        masterdata = pd.DataFrame()
+        datalist = []
+        txtfilename = 'proteins.csv'
 
-		directory = "./data/" + txtfilename
-		masterdata = pd.read_csv(directory, delimiter=',', header = 0)
+        directory = "./data/" + txtfilename
+        masterdata = pd.read_csv(directory, delimiter=',', header = 0)
 
-		ingredientlist = GetIngredients(text)
-		stepsIns = GetSteps(text)
-		#replacementdict = ingredToVeg(ingredientlist)
-		#newsteps = replaceIngrInSteps(stepsIns, replacementdict)
-		return TransToVeggie(ingredientlist,stepsIns, masterdata)
-
+        ingredientlist = GetIngredients(text)
+        stepsIns = GetSteps(text)
+        #replacementdict = ingredToVeg(ingredientlist)
+        #newsteps = replaceIngrInSteps(stepsIns, replacementdict)
+        return TransToVeggie(ingredientlist,stepsIns, masterdata)
+    
+    elif category == 'healthy':
+        ingredientlist = GetIngredients(text)
+        rawSteps = GetSteps(text)
+        return getHltyTrans(ingredientlist, rawSteps)
 
 
 text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
-[new_ingredients, new_steps] = Transformation(text,'vege')
-
-pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
-
+[new_ingredients, new_steps] = Transformation(text,'healthy')
+#pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
 
 

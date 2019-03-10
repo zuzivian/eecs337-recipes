@@ -79,6 +79,8 @@ def getName(line):
 
 	return None
 
+
+
 def getPreparation(line):
 	if ',' in line:
 		index=line.index(',')
@@ -97,10 +99,6 @@ def getPreparation(line):
 		if res=='':
 			return 'NoItem'
 		return res.replace('\n','')
-
-
-
-
 
 
 
@@ -193,6 +191,8 @@ def FormIngredientList(filepath):
 			if len(line.split())!=0:
 				res.append(FormIngredientDic(line))
 	return res
+
+
 
 def FormIngredientList1(text):
 	res=[]

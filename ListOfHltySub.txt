@@ -1,0 +1,11 @@
+oil|olive oil
+buttermilk|low-fat milk
+milk|low-fat milk
+rice|brown rice
+white rice|brown rice
+yogurt|fat-free yogurt
+chocolate|cf
+butter|cf
+suger|cf
+candy|cf
+cream|cf
