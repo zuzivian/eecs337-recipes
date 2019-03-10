@@ -10,7 +10,9 @@ measureList=[
 'gallon','pinch','dash','lb','pound','cube','head','clove','ounce','bunch'
 			]
 
-essentials=['beef','lamb','pork','chicken','fish','egg','tofu','tempeh','seitan','buttermilk']
+#essentials=['beef','lamb','pork','chicken','fish','egg','tofu','tempeh','seitan','buttermilk']
+masterdata = loadTransformTable("./dictionary/proteins.csv")
+essentials = list(masterdata['protein'])
 
 def get_essentials(line):
 	for i in line.split():
@@ -90,8 +92,6 @@ def getName(line):
 
 	return None
 
-
-
 def getPreparation(line):
 	if ',' in line:
 		index=line.index(',')
@@ -110,6 +110,10 @@ def getPreparation(line):
 		if res=='':
 			return 'NoItem'
 		return res.replace('\n','')
+
+
+
+
 
 
 
@@ -185,8 +189,6 @@ def FormIngredientDic(line):
 
 
 	return dic
-
-
 
 
 

@@ -17,7 +17,6 @@ def proteinSub(input_protein, masterdata):
 def ingredToVeg(inglist, masterdata):
     replacedict = {}
     for ingfull in inglist:
-        print(ingfull)
         ingredient = ingfull['name'].split()
         indict = set(ingredient).intersection(set(masterdata['protein']))
         if len(indict) > 0:
@@ -28,6 +27,7 @@ def ingredToVeg(inglist, masterdata):
                 if typecheck == "meat":
                     typereplace = proteinSub(item, masterdata)
                     replacedict[ingfull['name']] = typereplace
+                    replacedict[item] = typereplace
                 else:
                     typereplace = item
     return replacedict
@@ -42,8 +42,6 @@ def replaceIngrInSteps(steps, replacementdict):
                     if tobereplace[i] in list(replacementdict.keys()):
                         newitem = replacementdict[tobereplace[i]]
                         substep['ingredients'].append(newitem)
-                        print(tobereplace[i])
-                        print(newitem)
                         substep['raw'] = substep['raw'].replace(tobereplace[i], newitem)
                     else:
                         substep['ingredients'].append(tobereplace[i])

@@ -71,7 +71,7 @@ def parse_max_cook_time(get_times_result):
     if isinstance(get_times_result, str) == True:
         splitted = get_times_result.split(" ")
         if 'hour' in get_times_result:
-            timevalue += 3600 * int(splitted[len(splitted)-2])
+            timevalue += 0 #3600 * int(splitted[len(splitted)-2]) ignore hours
         elif 'minute' in get_times_result:
             timevalue += 60 * int(splitted[len(splitted)-2])
         elif 'second' in get_times_result:
@@ -85,7 +85,7 @@ def longestCookingMethod(sentences, allmethods):
     for sentence in sentences:
         cookingtimestring = get_times(sentence)
         cookingtimestep = parse_max_cook_time(cookingtimestring)
-        if cookingtimestep > 0 and cookingtimestep > minimumtime:
+        if cookingtimestep > 0 and cookingtimestep >= minimumtime:
             maincookingverb = sentence_verbs(sentence)
             maincookingmethod = isCookingMethod(maincookingverb, allmethods)
             if len(maincookingmethod) > 0:
@@ -98,7 +98,7 @@ def getMethodsDict(text):
     recipeDirectons = getDirections(text)
     pri_method = longestCookingMethod(recipeDirectons, methodlist)
     all_methods = getVerbs(recipeDirectons)
-    addi_method = isPrepMethod(methodlist, pri_method)
+    addi_method = isPrepMethod(all_methods, pri_method)
     methods_dict = {}
     methods_dict['primary'] = pri_method
     methods_dict['other'] = addi_method
