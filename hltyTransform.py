@@ -29,7 +29,7 @@ def changeQuantity(str1):
 def replaceIngred(ingredientlist):
     
     # load ListOfHltySub list
-    ListOfHltySub = getLOfTrans('ListOfHltySub.txt')
+    ListOfHltySub = getLOfTrans('dictionary/ListOfHltySub.txt')
     IngredInSub = [ListOfHltySub[i][0] for i in range(len(ListOfHltySub))]
     ToBeSubed = [ListOfHltySub[i][1] for i in range(len(ListOfHltySub))]
     
@@ -71,7 +71,7 @@ def replaceIngred(ingredientlist):
         for i in range(len(unigram_ingred)):
             singleword = unigram_ingred[i]
             bigwords = unigram_ingred[i-1] + ' '+ unigram_ingred[i]
-            if singleword in IngredInSub and bigwords not in IngredInSub:
+            if singleword in IngredInSub and bigwords not in IngredInSub and bigwords != 'soy milk':
                 ind = IngredInSub.index(singleword)
                 if ToBeSubed[ind] != 'cf':
                     ingredientlist_new[q]['name'] = ingredientlist[q]['name'].replace(singleword, ToBeSubed[ind])
@@ -85,7 +85,7 @@ def replaceIngred(ingredientlist):
 
 
 
-def replaceIngrInSteps(ingredientlist, steps):
+def replaceSteps(ingredientlist, steps):
     
     # get replaced ingredients
     ingredientlist_new = replaceIngred(ingredientlist)
@@ -111,7 +111,7 @@ def getHltyTrans(ingredientlist, steps):
     
     new_ingredientlist = replaceIngred(ingredientlist)
     
-    new_steps = replaceIngrInSteps(ingredientlist, steps)
+    new_steps = replaceSteps(ingredientlist, steps)
         
     return [new_ingredientlist, new_steps]
 

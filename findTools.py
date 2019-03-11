@@ -27,7 +27,7 @@ def checkRedun(LOfPhrases):
 
 def findTools(text):
     # load tools list
-    LOfTools = getLOfTools('ListOfTools.txt')
+    LOfTools = getLOfTools('dictionary/ListOfTools.txt')
     # get content of "Directions"
     UsefulData = getUsefulData(text,'directions:')
     # find tools in text
