@@ -1,7 +1,7 @@
 import nltk
 import pandas as pd
 
-PunctuationList="!#$%&()*+,-.:;<=>?@[\]^_`{'~}"
+PunctuationList="!#$%&()*+,.:;<=>?@[\]^_`{'~}"
 PunctuationList+='"'
 
 def RemovePunctuation(line):
