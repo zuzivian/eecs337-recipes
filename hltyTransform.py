@@ -70,8 +70,8 @@ def replaceIngred(ingredientlist):
         # 3. matching single word
         for i in range(len(unigram_ingred)):
             singleword = unigram_ingred[i]
-            bigwords = unigram_ingred[i-1] + ' '+ unigram_ingred[i]
-            if singleword in IngredInSub and bigwords not in IngredInSub and bigwords != 'soy milk':
+            biwords = unigram_ingred[i-1] + ' '+ unigram_ingred[i]
+            if singleword in IngredInSub and biwords not in IngredInSub and biwords != 'soy milk' and biwords != 'vagetable oil' and biwords != 'olive oil':
                 ind = IngredInSub.index(singleword)
                 if ToBeSubed[ind] != 'cf':
                     ingredientlist_new[q]['name'] = ingredientlist[q]['name'].replace(singleword, ToBeSubed[ind])
@@ -102,6 +102,13 @@ def replaceSteps(ingredientlist, steps):
                 if steps[i][j]['ingredients'][k] in ingreName_raw:
                     ind = ingreName_raw.index(steps[i][j]['ingredients'][k])
                     steps[i][j]['ingredients'][k] = ingreName_diff[ind][1]
+    
+        # print        
+    if ingreName_diff != []:
+        for i in range(len(ingreName_diff)):
+            print('\nHealthy transformation:\n',quantity_diff[i][0], meas[i], ingreName_diff[i][0], '-->', quantity_diff[i][1], meas[i], ingreName_diff[i][1])
+    else:
+        print('\nIt is a healthy recipe already. No more transformation.')
     
     return steps
                 
