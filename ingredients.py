@@ -63,7 +63,6 @@ def getName(line):
 			if ',' in line.split()[i]:
 				end=i
 				res=' '.join(i for i in line.split()[index:end+1])
-				break
 			if lib[i][1] in ['TO','IN']:
 				end=i
 				res= ' '.join(i for i in line.split()[index:end])
@@ -88,11 +87,9 @@ def getName(line):
 			if ',' in line.split()[i]:
 				end=i
 				res=' '.join(i for i in line.split()[index:end+1])
-				return RemovePunctuation(res.strip())
 			if lib[i][1] in ['TO','IN']:
 				end=i
 				res=' '.join(i for i in line.split()[index:end])
-				return RemovePunctuation(res.strip())
 		res=' '.join(i for i in line.split()[index:])
 		return RemovePunctuation(res.strip())
 
