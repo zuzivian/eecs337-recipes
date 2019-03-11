@@ -7,7 +7,9 @@ s="!#$%&()*+,-.:;<=>?@[\]^_`{'~}"
 s+='"'
 measureList=[
 'teaspoon','tablespoon','cup','pint','quart',
-'gallon','pinch','dash','lb','pound','cube','head','clove','ounce','bunch'
+'gallon','pinch','dash','lb','pound','cube','head','clove','ounce','bunch',
+'teaspoons','tablespoons','cups','pints','quarts',
+'gallons','pinches','dashes','lbs','pounds','cubes','heads','cloves','ounces','bunches'
 			]
 
 #essentials=['beef','lamb','pork','chicken','fish','egg','tofu','tempeh','seitan','buttermilk']
@@ -172,7 +174,7 @@ def convertStrToFloat(str1):
 def getMeasurement(line):
 	for i in range(0,len(line.split()[0:5])):
 		for j in measureList:
-			if j in line.split()[i]:
+			if j ==line.split()[i].strip():
 				return (i,j)
 	return 'NoItem'
 
