@@ -5,7 +5,10 @@ rice|brown rice
 white rice|brown rice
 yogurt|fat-free yogurt
 chocolate|cf
+chocolate chips|cf
 butter|cf
 suger|cf
 candy|cf
 cream|cf
+sour cream|cf
+salt|cf
