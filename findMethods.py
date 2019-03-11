@@ -71,7 +71,7 @@ def parse_max_cook_time(get_times_result):
     if isinstance(get_times_result, str) == True:
         splitted = get_times_result.split(" ")
         if 'hour' in get_times_result:
-            timevalue += 0 #3600 * int(splitted[len(splitted)-2]) ignore hours
+            timevalue += 299 #3600 * int(splitted[len(splitted)-2]) hours are given less weight
         elif 'minute' in get_times_result:
             timevalue += 60 * int(splitted[len(splitted)-2])
         elif 'second' in get_times_result:
