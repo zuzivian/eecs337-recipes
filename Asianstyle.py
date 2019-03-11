@@ -27,7 +27,7 @@ def containCooking(substep,cook):
 				return i
 	return None
 #ingredients are list of dic
-#steps are 
+#steps are
 def TransToAsian(ThaiOrKorean,ingredients,steps):
 	if ThaiOrKorean=='Thai':
 		isThai=False
@@ -58,13 +58,13 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 						ingredients.append({'name':'coconut milk','quantity':'2','measurement':'teaspoon','Preparation':'NoItem'})
 						ingredients.append({'name':'curry paste','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
 						substep['raw']+=' Mix with Coconut and Thai Fish Sauce.'
-						substep['raw']+=' Sprinkle with curry powder'
+						substep['raw']+=' Sprinkle with curry powder.'
 						substep['ingredients'].append('coconut milk')
 						substep['ingredients'].append('fish sauce')
 						substep['ingredients'].append('curry powder')
 						isThai=True
 						marker=0
-						break		
+						break
 		isRiceNeed=True
 		for ingredient in ingredients:
 			try:
@@ -91,7 +91,7 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 		ingredients.append({'name':'minced lemon grass','quantity':'2','measurement':'NoItem','Preparation':'minced'})
 		ingredients.append({'name':'diced herbs','quantity':'2','measurement':'teaspoon','Preparation':'diced'})
 		ingredients.append({'name':'fresh basil','quantity':'1/4','measurement':'cup','Preparation':'NoItem'})
-		
+
 
 
 	if ThaiOrKorean=='Korean':
@@ -123,12 +123,12 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 						ingredients.append({'name':'soy sauce','quantity':'1','measurement':'teaspoon','Preparation':'NoItem'})
 						ingredients.append({'name':'Korean chili pepper powder','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
 						substep['raw']+=' Mix with soy sauce.'
-						substep['raw']+=' Sprinkle with Korean chili pepper powder'
+						substep['raw']+=' Sprinkle with Korean chili pepper powder.'
 						substep['ingredients'].append('soy sauce')
 						substep['ingredients'].append('Korean chili pepper powder')
 						isKorean=True
 						marker=0
-						break		
+						break
 		isRiceNeed=True
 		for ingredient in ingredients:
 			try:
@@ -153,25 +153,3 @@ def TransToAsian(ThaiOrKorean,ingredients,steps):
 		ingredients.append({'name':'diced ginger','quantity':'1/2','measurement':'cup','Preparation':'diced'})
 		ingredients.append({'name':'diced green onions','quantity':'2','measurement':'teaspoon','Preparation':'diced'})
 	return [ingredients, steps]
-
-
-					
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

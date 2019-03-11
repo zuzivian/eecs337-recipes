@@ -10,6 +10,7 @@ from IngredientsGenrator import *
 #from vegTransform import *
 from VegVeganTransform import *
 from hltyTransform import *
+from Mexicanstyle import *
 
 
 def GetData(url):
@@ -63,28 +64,33 @@ def GetSteps(text):
 def Transformation(text,category):
     """category is the kind of transformation"""
     """waiting for update"""
-    if category in ['Thai','Korean']:
-        return TransToAsian(category,GetIngredients(text),GetSteps(text))
 
-    elif category=='veg':
+    if category==0:
         masterdata = loadTransformTable('./dictionary/proteins.csv')
         ingredientlist = GetIngredients(text)
         stepsIns = GetSteps(text)
         return TransToVeggie(ingredientlist, stepsIns, masterdata)
 
-    elif category=='vegan':
+    elif category==1:
         masterdata = loadTransformTable('./dictionary/proteins.csv')
         ingredientlist = GetIngredients(text)
         stepsIns = GetSteps(text)
-        return TransToVegan(ingredientlist, stepsIns, masterdata)   	
+        return TransToVegan(ingredientlist, stepsIns, masterdata)
 
-    elif category=='mexican':
-        TransToMexican(GetIngredients(text),GetSteps(text))
-
-    elif category == 'healthy':
+    elif category == 2:
         ingredientlist = GetIngredients(text)
         rawSteps = GetSteps(text)
         return getHltyTrans(ingredientlist, rawSteps)
+
+    elif category == 3:
+        return TransToAsian('Korean',GetIngredients(text),GetSteps(text))
+
+    elif category == 4:
+        return TransToAsian('Thai',GetIngredients(text),GetSteps(text))
+
+    elif category == 5:
+        return TransToMexican(GetIngredients(text),GetSteps(text))
+
 
 
 #text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
