@@ -5,6 +5,17 @@ Mexican_Essentials=[
 'chilli pepper', 'coriander', 'jalapeno', 'poblano',
  'avocado', 'chipotle', 'chili powder', 'chorizo', 'salsa verde'
 ]
+
+Mexican_replacement= {
+    'rice': 'spanish rice',
+    'soy sauce': 'hot sauce',
+    'bell pepper': 'poblano',
+    'sausage' : 'chorizo',
+    'lemon' : 'lime',
+    'peas' : 'corn',
+    
+}
+
 Addable = [
     'pasta','capellini','spaghetti','ziti',
     'fettuccine', 'lasagne','linguine','cavatappi',
@@ -20,15 +31,28 @@ def containCooking(substep,cook):
 			if i in substep['raw'].lower():
 				return i
 	return None
-#ingredients are list of dic
-#steps are
+
+def ReplaceIngredient(line, oldingredient, newingredient):
+	return line.replace(oldingredient, newingredient)
+
 def TransToMexican(ingredients,steps):
     isMexican=False
     marker=1
+    ingredients_replace = Mexican_replacement.keys()
+    for ingredient in ingredients:
+        for ingredient_replace in ingredients_replace:
+            if ingredient_replace in ingredient['name']:
+                ingredient['name'] = ingredient['name'].replace(ingredient_replace, Mexican_replacement[ingredient_replace])
+
     for step in steps:
-        if isMexican:
-            break
         for substep in step:
+            for ingredient in substep['ingredients']:
+                for ingredient_replace in ingredients_replace:
+                    if ingredient_replace in ingredient:
+                        ingredient = Mexican_replacement[ingredient_replace]
+                        substep['raw'] = substep['raw'].replace(ingredient_replace, Mexican_replacement[ingredient_replace])
+            if isMexican:
+                break
             if containCooking(substep, Addable):
                 substep['raw']+=' Add poblano into the '+ containCooking(substep,Addable) +'.'
                 substep['raw']+=' Sprinkle with chili pepper.'
