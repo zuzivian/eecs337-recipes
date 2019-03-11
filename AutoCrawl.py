@@ -3,17 +3,16 @@ import os
 
 
 def AutoCrawl(url):
+
+	if os.path.exists('recipe.txt'):
+		os.remove('recipe.txt')
 	command="scrapy crawl Recipe -a url="+url
 	os.system(command)
-	if os.path.exists('recipe.txt'):
-		txt_parser('recipe.txt',"data/"+url.split('/')[-1])
-		print('Successfully Loading.....')
-		os.remove('recipe.txt')
-		with open("data/"+url.split('/')[-1]+".txt",'r')as fp:
-			return fp.readlines()
-	else:
-		print('no recipe.txt existed....')
-		return None
+	txt_parser('recipe.txt',"data/new")
+	with open("data/new"+".txt",'r')as fp:
+		return fp.readlines()
+	print('crawling error, things wrong with the url')
+	return None
 
 
 
