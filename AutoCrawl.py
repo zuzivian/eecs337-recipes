@@ -6,10 +6,10 @@ def AutoCrawl(url):
 	command="scrapy crawl Recipe -a url="+url
 	os.system(command)
 	if os.path.exists('recipe.txt'):
-		txt_parser('recipe.txt',"data/"+url.split('/')[-2])
+		txt_parser('recipe.txt',"data/"+url.split('/')[-1])
 		print('Successfully Loading.....')
 		os.remove('recipe.txt')
-		with open("data/"+url.split('/')[-2]+".txt",'r')as fp:
+		with open("data/"+url.split('/')[-1]+".txt",'r')as fp:
 			return fp.readlines()
 	else:
 		print('no recipe.txt existed....')
