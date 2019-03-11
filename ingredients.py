@@ -174,7 +174,7 @@ def convertStrToFloat(str1):
 def getMeasurement(line):
 	for i in range(0,len(line.split()[0:5])):
 		for j in measureList:
-			if j ==line.split()[i].strip():
+			if j ==RemovePunctuation(line.split()[i].strip()):
 				return (i,j)
 	return 'NoItem'
 
