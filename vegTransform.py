@@ -14,10 +14,22 @@ def proteinSub(input_protein, masterdata):
     replacement = masterdata[masterdata['protein'] == input_protein]['veg_closest'].item()
     return replacement
 
+def bigramsMatchKeyword(ingtokens, keyword):
+    keywordposition = ingtokens.index(keyword)
+    ingbigrams = list(bigrams(ingtokens))
+    gen_bigrams = []
+    if keywordposition != 0:
+        bg_before = ingbigrams[keywordposition-1][0] + " " + ingbigrams[keywordposition-1][1]
+        gen_bigrams.append(bg_before)
+    if keywordposition != len(ingtokens) - 1:
+        bg_after = ingbigrams[keywordposition][0] + " " + ingbigrams[keywordposition][1]
+        gen_bigrams.append(bg_after)
+    return gen_bigrams
+
 def ingredToVeg(inglist, masterdata):
     replacedict = {}
     for ingfull in inglist:
-        ingredient = ingfull['name'].split()
+        ingredient = word_tokenize(ingfull['name'])
         indict = set(ingredient).intersection(set(masterdata['protein']))
         if len(indict) > 0:
             indictlist = list(indict)
@@ -26,6 +38,13 @@ def ingredToVeg(inglist, masterdata):
                 typecheck = proteinType(item, masterdata)
                 if typecheck == "meat":
                     typereplace = proteinSub(item, masterdata)
+                    ingredientWlength = len(ingredient)
+                    if ingredientWlength > 2:
+                        possibleWord = bigramsMatchKeyword(ingredient, item)
+                        replacedict[possibleWord[0]] = typereplace
+                        replacedict[possibleWord[0]+'s'] = typereplace
+                        if len(possibleWord) == 2:
+                            replacedict[possibleWord[1]] = typereplace
                     replacedict[ingfull['name']] = typereplace
                     replacedict[item] = typereplace
                 else:
@@ -50,19 +69,13 @@ def replaceIngrInSteps(steps, replacementdict):
 
 def replaceIngrInIngrs(ingredients, replacementdict):
     for item in ingredients:
+        if 'broth' in item['name'] or 'stock' in item['name']:
+            item['name'] = "vegetable broth"
         if item['name'] in list(replacementdict.keys()):
             tobereplace = item['name']
             item['name'] = replacementdict[tobereplace]
                         
     return ingredients
-
-'''
-def loadTransformTable(directory):
-	transformTable = pd.DataFrame()
-	datalist = []
-	transformTable = pd.read_csv(directory, delimiter=',', header = 0)
-	return transformTable
-'''
 
 def TransToVeggie(ingredients, steps, masterdata):
     rep_dict = ingredToVeg(ingredients, masterdata)
@@ -72,17 +85,3 @@ def TransToVeggie(ingredients, steps, masterdata):
         return [newingr, newsteps]
     else:
         return [ingredients, steps]
-
-# masterdata = pd.DataFrame()
-# datalist = []
-# txtfilename = 'proteins.csv'
-
-# directory = "./data//" + txtfilename
-# masterdata = pd.read_csv(directory, delimiter=',', header = 0)
-
-# text = GetData("https://www.allrecipes.com/recipe/150306/the-best-chicken-fried-steak/")
-# ingredientlist = GetIngredients(text)
-# stepsIns = GetSteps(text)
-# #replacementdict = ingredToVeg(ingredientlist)
-# #newsteps = replaceIngrInSteps(stepsIns, replacementdict)
-# TransToVeggie(ingredientlist,stepsIns)
