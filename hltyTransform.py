@@ -103,7 +103,7 @@ def replaceSteps(ingredientlist, steps):
                     ind = ingreName_raw.index(steps[i][j]['ingredients'][k])
                     steps[i][j]['ingredients'][k] = ingreName_diff[ind][1]
     
-        # print        
+    # print        
     if ingreName_diff != []:
         for i in range(len(ingreName_diff)):
             print('\nHealthy transformation:\n',quantity_diff[i][0], meas[i], ingreName_diff[i][0], '-->', quantity_diff[i][1], meas[i], ingreName_diff[i][1])
