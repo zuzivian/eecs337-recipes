@@ -14,7 +14,6 @@ steps = GetSteps(text)
 pprint(steps)
 
 ingredients = GetIngredients(text)
-pprint(ingredients)
 
 [ingredients_new, steps_new] = TransToMexican(ingredients, steps)
 pprint(ingredients_new)

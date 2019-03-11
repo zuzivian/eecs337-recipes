@@ -11,6 +11,26 @@ def generate_directions(step_list):
     text= "\n".join(steps)
     return text
 
+def find_matching(sentence, strings):
+    matches = []
+    for string in strings:
+        found = False
+        processed = RemovePunctuation(string.lower())
+        tokens = nltk.word_tokenize(processed)
+        for n in [5, 4, 3, 2, 1]:
+            ngram_list = ngrams(tokens,n)
+            for ngram in ngram_list:
+                joined_ngram = ' '.join(ngram)
+                if joined_ngram in sentence.lower():
+                    if joined_ngram in matches:
+                        continue
+                    matches.append(joined_ngram)
+                    found = True
+                    break
+            if found:
+                break
+    return list(set(matches))
+
 def get_steps(text, methods, ingredients, tools):
     step_list = []
     methods = methods['primary'] + methods['other']
@@ -27,30 +47,13 @@ def get_steps(text, methods, ingredients, tools):
             if not sentence:
                 continue
             substep = {}
-            tokens = nltk.word_tokenize(sentence.lower())
-            substep['raw'] = sentence
-            substep['methods'] = [method for method in methods if method in tokens]
-            substep['tools'] = [tool for tool in tools if tool in tokens]
-            substep['ingredients'] = []
-            for ingredient in ingredients:
-                found = False
-                ingredient_processed = RemovePunctuation(ingredient['name'].lower())
-                ingredient_tokens = nltk.word_tokenize(ingredient_processed)
-                for n in [5, 4, 3, 2, 1]:
-                    ingredient_ngrams = ngrams(ingredient_tokens,n)
-                    for ingredient_ngram in ingredient_ngrams:
-                        ngram = ' '.join(ingredient_ngram)
-                        if ngram in sentence.lower():
-                            if ngram in substep['ingredients']:
-                                continue
-                            substep['ingredients'].append(ngram)
-                            found = True
-                            break
-                    if found:
-                        break
-            substep['ingredients'] = list(set(substep['ingredients']))
+            substep['methods'] = find_matching(sentence, methods)
+            substep['tools'] = find_matching(sentence, tools)
+            ingredient_names = [ingredient['name'] for ingredient in ingredients]
+            substep['ingredients'] = find_matching(sentence, ingredient_names)
             substep['times'] = get_times(sentence)
             substep['conditions'] = get_conditions(sentence)
+            substep['raw'] = sentence
             substep_list.append(substep)
         step_list.append(substep_list)
     return step_list
