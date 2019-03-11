@@ -42,6 +42,7 @@ def TransToMexican(ingredients,steps):
     for ingredient in ingredients:
         for ingredient_replace in ingredients_replace:
             if ingredient_replace in ingredient['name']:
+                print(ingredient_replace + ' substitutes ' + Mexican_replacement[ingredient_replace])
                 ingredient['name'] = ingredient['name'].replace(ingredient_replace, Mexican_replacement[ingredient_replace])
 
     for step in steps:
@@ -54,6 +55,8 @@ def TransToMexican(ingredients,steps):
             if isMexican:
                 break
             if containCooking(substep, Addable):
+                print('poblano added.')
+                print('chilli pepper added.')
                 substep['raw']+=' Add poblano into the '+ containCooking(substep,Addable) +'.'
                 substep['raw']+=' Sprinkle with chili pepper.'
                 substep['ingredients'].append('chili pepper')
@@ -63,6 +66,8 @@ def TransToMexican(ingredients,steps):
                 isMexican=True
                 break
             if containCooking(substep, cooking):
+                print('jalapenos added.')
+                print('chilli pepper added.')
                 ingredients.append({'name':'jalapenos','quantity':'6','measurement':'NoItem','Preparation':'NoItem'})
                 ingredients.append({'name':'chili pepper','quantity':'1/2','measurement':'teaspoon','Preparation':'NoItem'})
                 substep['raw']+=' Mix in jalapenos and chili powder.'
@@ -79,6 +84,8 @@ def TransToMexican(ingredients,steps):
     	except:
     		continue
     if not containsSalsa:
+        print('salsa verde added.')
+        print('coriander added.')
         ingredients.append({'name':'salsa verde', 'quantity':'1/4', 'measurement':'cup', 'Preparation':'NoItem'})
         ingredients.append({'name':'coriander', 'quantity':'1/8', 'measurement':'cup', 'Preparation':'NoItem'})
         steps.append(
