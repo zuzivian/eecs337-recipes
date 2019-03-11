@@ -15,16 +15,8 @@ from Mexicanstyle import *
 
 def GetData(url):
 	#if url already have been crawled, diretly return the crawled data
-	if os.path.exists("data/"+url.split('/')[-1]+'.txt'):
-		with open("data/"+url.split('/')[-1]+".txt",'r')as fp:
-			print('Recipe File already exists')
-			return fp.readlines()
-
-	#if is a new url crawled the data an
-	else:
-		print('New Recipe!')
-		data=AutoCrawl(url)
-		return data
+	data=AutoCrawl(url)
+	return data
 
 def GetIngredients(text):
 	"""
@@ -93,7 +85,8 @@ def Transformation(text,category):
 
 
 
-#text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
+# text = GetData("https://www.allrecipes.com/recipe/221227/")
+# print(GetIngredients(text))
 #[new_ingredients, new_steps] = Transformation(text,'healthy')
 #pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
 #text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
