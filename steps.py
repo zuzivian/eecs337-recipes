@@ -1,5 +1,7 @@
 import nltk
 from pprint import pprint
+from nltk.util import ngrams
+from helpers import RemovePunctuation
 
 
 def generate_directions(step_list):
@@ -28,9 +30,25 @@ def get_steps(text, methods, ingredients, tools):
             tokens = nltk.word_tokenize(sentence.lower())
             substep['raw'] = sentence
             substep['methods'] = [method for method in methods if method in tokens]
-            substep['ingredients'] = [ingredient['name'] for ingredient in ingredients if ingredient['name'] in tokens]
-            #substep['ingredients'] = [ingredient for ingredient in ingredients if ingredient in tokens]
             substep['tools'] = [tool for tool in tools if tool in tokens]
+            substep['ingredients'] = []
+            for ingredient in ingredients:
+                found = False
+                ingredient_processed = RemovePunctuation(ingredient['name'].lower())
+                ingredient_tokens = nltk.word_tokenize(ingredient_processed)
+                for n in [5, 4, 3, 2, 1]:
+                    ingredient_ngrams = ngrams(ingredient_tokens,n)
+                    for ingredient_ngram in ingredient_ngrams:
+                        ngram = ' '.join(ingredient_ngram)
+                        if ngram in sentence.lower():
+                            if ngram in substep['ingredients']:
+                                continue
+                            substep['ingredients'].append(ngram)
+                            found = True
+                            break
+                    if found:
+                        break
+            substep['ingredients'] = list(set(substep['ingredients']))
             substep['times'] = get_times(sentence)
             substep['conditions'] = get_conditions(sentence)
             substep_list.append(substep)

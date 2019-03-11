@@ -8,6 +8,7 @@ from pprint import pprint
 from Asianstyle import *
 from IngredientsGenrator import *
 from vegTransform import *
+from hltyTransform import *
 
 
 def GetData(url):
@@ -63,7 +64,7 @@ def Transformation(text,category):
     """waiting for update"""
     if category in ['Thai','Korean']:
         return TransToAsian(category,GetIngredients(text),GetSteps(text))
-    
+
     elif category=='vege':
         txtfilename = 'proteins.csv'
         directory = "./dictionary/" + txtfilename
@@ -71,10 +72,10 @@ def Transformation(text,category):
         ingredientlist = GetIngredients(text)
         stepsIns = GetSteps(text)
         return TransToVeggie(ingredientlist, stepsIns, masterdata)
-    
+
     elif category=='mexican':
         TransToMexican(GetIngredients(text),GetSteps(text))
-    
+
     elif category == 'healthy':
         ingredientlist = GetIngredients(text)
         rawSteps = GetSteps(text)
@@ -88,6 +89,3 @@ text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chic
 #[new_ingredients, new_steps] = Transformation(text,'vege')
 
 #pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
-
-
-
