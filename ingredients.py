@@ -68,9 +68,10 @@ def getName(line):
 				break
 
 		if res:
-			return res
+			return RemovePunctuation(res.strip())
 		else:
-			return ' '.join(i for i in line.split()[index:])
+			res=' '.join(i for i in line.split()[index:])
+			return RemovePunctuation(res.strip())
 	else:
 		if getQuantity(line)=='NoItem':
 			index=0
@@ -84,11 +85,14 @@ def getName(line):
 		for i in range(index,len(line.split())):
 			if ',' in line.split()[i]:
 				end=i
-				return ' '.join(i for i in line.split()[index:end+1])
+				res=' '.join(i for i in line.split()[index:end+1])
+				return RemovePunctuation(res.strip())
 			if lib[i][1] in ['TO','IN']:
 				end=i
-				return ' '.join(i for i in line.split()[index:end])
-		return ' '.join(i for i in line.split()[index:])
+				res=' '.join(i for i in line.split()[index:end])
+				return RemovePunctuation(res.strip())
+		res=' '.join(i for i in line.split()[index:])
+		return RemovePunctuation(res.strip())
 
 	return None
 
