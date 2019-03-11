@@ -4,5 +4,4 @@
 ## Packages
 
 - scrapy
-- scrapy.contrib
 - fake_useragent
