@@ -1,15 +1,21 @@
-protein,veg_dim,veg_closest
-beef,meat,seitan
-lamb,meat,seitan
-pork,meat,seitan
-chicken,meat,tempeh
-fish,meat,tofu
-egg,meat,fake egg
-tofu,vegetarian,
-tempeh,vegetarian,
-seitan,vegetarian,
-buttermilk,meat,soy milk
-lobster,meat,tempeh
-crab,meat,tempeh
-crabmeat,meat,fake crabmeat
-bacon,meat,veggie bacon
+protein,veg_dim,veg_closest,vegan_dim,vegan_closest
+beef,animal,seitan,animal,seitan
+lamb,animal,seitan,animal,seitan
+pork,animal,seitan,animal,seitan
+chicken,animal,tempeh,animal,tempeh
+lamb,animal,beyond meat,animal,beyond meat
+mutton,animal,beyond meat,animal,beyond meat
+venison,animal,beyond meat,animal,beyond meat
+fish,animal,tofu,animal,tofu
+egg,vegetarian,,animal,flegg
+tofu,vegetarian,,vegetarian,
+tempeh,vegetarian,,vegetarian,
+seitan,vegetarian,,vegetarian,
+buttermilk,vegetarian,,animal,almond milk
+butter,vegetarian,,animal,margarine
+milk,vegetarian,,animal,soymilk
+cheese,vegetarian,,animal,cashew cheese
+lobster,animal,tempeh,animal,tempeh
+crab,animal,tempeh,animal,tempeh
+crabmeat,animal,fake crabmeat,animal,fake crabmeat
+bacon,animal,veggie bacon,animal,veggie bacon

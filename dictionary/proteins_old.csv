@@ -1,0 +1,15 @@
+protein,veg_dim,veg_closest
+beef,meat,seitan
+lamb,meat,seitan
+pork,meat,seitan
+chicken,meat,tempeh
+fish,meat,tofu
+egg,meat,fake egg
+tofu,vegetarian,
+tempeh,vegetarian,
+seitan,vegetarian,
+buttermilk,meat,soy milk
+lobster,meat,tempeh
+crab,meat,tempeh
+crabmeat,meat,fake crabmeat
+bacon,meat,veggie bacon

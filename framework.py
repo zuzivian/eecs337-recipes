@@ -7,7 +7,8 @@ from ingredients import *
 from pprint import pprint
 from Asianstyle import *
 from IngredientsGenrator import *
-from vegTransform import *
+#from vegTransform import *
+from VegVeganTransform import *
 from hltyTransform import *
 
 
@@ -65,13 +66,17 @@ def Transformation(text,category):
     if category in ['Thai','Korean']:
         return TransToAsian(category,GetIngredients(text),GetSteps(text))
 
-    elif category=='vege':
-        txtfilename = 'proteins.csv'
-        directory = "./dictionary/" + txtfilename
-        masterdata = loadTransformTable(directory)
+    elif category=='veg':
+        masterdata = loadTransformTable('./dictionary/proteins.csv')
         ingredientlist = GetIngredients(text)
         stepsIns = GetSteps(text)
         return TransToVeggie(ingredientlist, stepsIns, masterdata)
+
+    elif category=='vegan':
+        masterdata = loadTransformTable('./dictionary/proteins.csv')
+        ingredientlist = GetIngredients(text)
+        stepsIns = GetSteps(text)
+        return TransToVegan(ingredientlist, stepsIns, masterdata)   	
 
     elif category=='mexican':
         TransToMexican(GetIngredients(text),GetSteps(text))
@@ -82,8 +87,8 @@ def Transformation(text,category):
         return getHltyTrans(ingredientlist, rawSteps)
 
 
-text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
-[new_ingredients, new_steps] = Transformation(text,'healthy')
+#text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
+#[new_ingredients, new_steps] = Transformation(text,'healthy')
 #pprint("Ingredients:\n" + "\n".join(generator(new_ingredients)) + "\nDirections:\n"+ generate_directions(new_steps))
 #text = GetData("https://www.allrecipes.com/recipe/221227/honey-brined-fried-chicken-breasts/")
 #[new_ingredients, new_steps] = Transformation(text,'vege')
