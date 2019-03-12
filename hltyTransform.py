@@ -49,7 +49,7 @@ def replaceIngred(ingredientlist):
                 ingredientlist_new[q]['name'] = ToBeSubed[ind]
             else:
                 quant = ingredientlist_new[q]['quantity']
-                ingredientlist_new[q]['quantity'] = changeQuantity(quant)
+                ingredientlist_new[q]['quantity'] = str(changeQuantity(quant)/2)
         else:
             continue
                 
@@ -63,7 +63,7 @@ def replaceIngred(ingredientlist):
                     ingredientlist_new[q]['name'] = ingredientlist[q]['name'].replace(item1, ToBeSubed[ind])
                 else:
                     quant = ingredientlist_new[q]['quantity']
-                    ingredientlist_new[q]['quantity'] = changeQuantity(quant)
+                    ingredientlist_new[q]['quantity'] = str(changeQuantity(quant)/2)
             else:
                 continue
         
@@ -77,7 +77,7 @@ def replaceIngred(ingredientlist):
                     ingredientlist_new[q]['name'] = ingredientlist[q]['name'].replace(singleword, ToBeSubed[ind])
                 else:
                     quant = ingredientlist[q]['quantity']
-                    ingredientlist_new[q]['quantity'] = changeQuantity(quant)
+                    ingredientlist_new[q]['quantity'] = str(changeQuantity(quant)/2)
             else:
                 continue
          
