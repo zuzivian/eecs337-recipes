@@ -34,7 +34,7 @@ def main():
 
     ingredient_text_new = "\n".join(generator(ingredients_new))
     directions_text_new = generate_directions(steps_new)
-
+    print('Ingredients and Directions After Change are listed as below:')
     print("\nIngredients\n" + ingredient_text_new + "\n\nDirections\n" + directions_text_new)
 
 
