@@ -41,22 +41,30 @@ def ingredToVeg(inglist, masterdata, qtype = "veg"):
         indict = set(ingredient).intersection(set(masterdata['protein']))
         if len(indict) > 0:
             indictlist = list(indict)
-            for i in range(len(indictlist)):
-                item = indictlist[i]
-                typecheck = proteinType(item, masterdata, qtype)
-                if typecheck == "animal":
-                    typereplace = proteinSub(item, masterdata, qtype)
-                    ingredientWlength = len(ingredient)
-                    if ingredientWlength > 2:
-                        possibleWord = bigramsMatchKeyword(ingredient, item)
-                        replacedict[possibleWord[0]] = typereplace
-                        replacedict[possibleWord[0]+'s'] = typereplace
-                        if len(possibleWord) == 2:
-                            replacedict[possibleWord[1]] = typereplace
-                    replacedict[ingfull['name']] = typereplace
-                    replacedict[item] = typereplace
-                else:
-                    typereplace = item
+            possibleBroth = bigram1EndWithKeyword(ingredient, ['broth', 'stock'])
+            possibleSausage = bigram1EndWithKeyword(ingredient, ['sausage'])
+            if len(possibleBroth) > 0:
+                replacedict[possibleBroth] = "vegetable broth"
+            elif len(possibleSausage) > 0:
+                replacedict[possibleSausage] = "mock duck sausage"
+            else:
+                for i in range(len(indictlist)):
+                    item = indictlist[i]
+                    typecheck = proteinType(item, masterdata, qtype)
+                    if typecheck == "animal":
+                        typereplace = proteinSub(item, masterdata, qtype)
+                        ingredientWlength = len(ingredient)
+                        if ingredientWlength > 2:
+                            possibleWord = bigramsMatchKeyword(ingredient, item)
+                            replacedict[possibleWord[0]] = typereplace
+                            replacedict[possibleWord[0]+'s'] = typereplace
+                            if len(possibleWord) == 2:
+                                replacedict[possibleWord[1]] = typereplace
+                        replacedict[ingfull['name']] = typereplace
+                        replacedict[item] = typereplace
+                        pprint("--substitute " + item + " by " + typereplace + "--\n")
+                    else:
+                        typereplace = item
     return replacedict
 
 def replaceIngrInSteps(steps, replacementdict):
@@ -78,14 +86,21 @@ def replaceIngrInSteps(steps, replacementdict):
 def replaceIngrInIngrs(ingredients, replacementdict):
     for item in ingredients:
         if 'broth' in item['name'] or 'stock' in item['name']:
+            pprint("--substitute " + item['name'] + " by " + "vegetable broth" + "--\n")
             item['name'] = "vegetable broth"
+        if 'sausage' in item['name']:
+            pprint("--substitute " + item['name'] + " by " + "mock duck sausage" + "--\n")
+            item['name'] = "mock duck sausage"
         if item['name'] in list(replacementdict.keys()):
             tobereplace = item['name']
             item['name'] = replacementdict[tobereplace]
-                        
+            if item['measurement'] == 'NoItem':
+                item['measurement'] = 'pounds'
+    pprint("\n")                 
     return ingredients
 
 def TransToVeggie(ingredients, steps, masterdata):
+    pprint("Vegetarian transformation: \n")
     rep_dict = ingredToVeg(ingredients, masterdata, "veg")
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)
@@ -95,6 +110,7 @@ def TransToVeggie(ingredients, steps, masterdata):
         return [ingredients, steps]
 
 def TransToVegan(ingredients, steps, masterdata):
+    pprint("Vegan transformation: \n")
     rep_dict = ingredToVeg(ingredients, masterdata, "vegan")
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)

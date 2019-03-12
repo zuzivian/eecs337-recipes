@@ -21,3 +21,12 @@ def loadTransformTable(directory):
 	datalist = []
 	transformTable = pd.read_csv(directory, delimiter=',', header = 0)
 	return transformTable
+
+def bigram1EndWithKeyword(sentokenlist, keywordlist):
+    possibleBigram = ''
+    stl_cutfirst = sentokenlist[1:len(sentokenlist)]
+    keyidentify = set(stl_cutfirst).intersection(set(keywordlist))
+    if len(keyidentify) > 0:
+        keyposition = stl_cutfirst.index(list(keyidentify)[0])
+        possibleBigram = sentokenlist[keyposition] + " " + sentokenlist[keyposition+1]
+    return possibleBigram

@@ -3,8 +3,13 @@ beef,animal,seitan,animal,seitan
 lamb,animal,seitan,animal,seitan
 pork,animal,seitan,animal,seitan
 chicken,animal,tempeh,animal,tempeh
+turkey,animal,mock duck,animal,mock duck
+duck,animal,mock duck,animal,mock duck
+groundmeat,animal,lentil,animal,lentil
 lamb,animal,beyond meat,animal,beyond meat
 mutton,animal,beyond meat,animal,beyond meat
+meatball,animal,meatless meatball,animal,meatless meatball
+veal,animal,seitan,animal,seitan
 venison,animal,beyond meat,animal,beyond meat
 fish,animal,tofu,animal,tofu
 egg,vegetarian,,animal,flegg
@@ -15,7 +20,11 @@ buttermilk,vegetarian,,animal,almond milk
 butter,vegetarian,,animal,margarine
 milk,vegetarian,,animal,soymilk
 cheese,vegetarian,,animal,cashew-cheese
+cream,vegetarian,,animal,vegan cream
 lobster,animal,tempeh,animal,tempeh
 crab,animal,tempeh,animal,tempeh
 crabmeat,animal,fake crabmeat,animal,fake crabmeat
 bacon,animal,veggie bacon,animal,veggie bacon
+lard,animal,coconut oil,animal,coconut oil
+eggs,vegetarian,,animal,fleggs
+steak,animal,eggplant,animal,eggplant

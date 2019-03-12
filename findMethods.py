@@ -82,6 +82,7 @@ def parse_max_cook_time(get_times_result):
 
 def longestCookingMethod(sentences, allmethods):
     minimumtime = 0
+    maincookingmethod = []
     for sentence in sentences:
         cookingtimestring = get_times(sentence)
         cookingtimestep = parse_max_cook_time(cookingtimestring)
@@ -96,8 +97,11 @@ def getMethodsDict(text):
     list_methods = getLOfMethods('./dictionary/methods.csv')
     methodlist = [item.lower() for item in list_methods]
     recipeDirectons = getDirections(text)
-    pri_method = longestCookingMethod(recipeDirectons, methodlist)
     all_methods = getVerbs(recipeDirectons)
+    pri_method_suspect = longestCookingMethod(recipeDirectons, methodlist)
+    if len(pri_method_suspect) == 0:
+        pri_method_suspect = isCookingMethod(all_methods, methodlist)
+    pri_method = list(set(pri_method_suspect))
     addi_method = isPrepMethod(all_methods, pri_method)
     methods_dict = {}
     methods_dict['primary'] = pri_method
