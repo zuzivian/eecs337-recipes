@@ -87,12 +87,14 @@ def replaceIngred(ingredientlist):
 
 def replaceSteps(ingredientlist, steps):
     
-    # get replaced ingredients
+# get replaced ingredients
     ingredientlist_new = replaceIngred(ingredientlist)
     ingreName_new = [ingredientlist_new[i]['name'] for i in range(len(ingredientlist_new))]
     ingreName = [ingredientlist[i]['name'] for i in range(len(ingredientlist))]
-    ingreName_diff = [(ingreName[i], ingreName_new[i]) for i in range (len(ingreName_new)) if ingredientlist[i] != ingredientlist_new[i]]
+    ingreName_diff = [(ingreName[i], ingreName_new[i]) for i in range (len(ingreName_new)) if (ingredientlist[i] != ingredientlist_new[i])]
+    quantity_diff = [(ingredientlist[i]['quantity'],ingredientlist_new[i]['quantity']) for i in range(len(ingredientlist)) if (ingredientlist[i] != ingredientlist_new[i])]
     ingreName_raw = [ingreName_diff[i][0] for i in range(len(ingreName_diff))]
+    meas = [ingredientlist[i]['measurement'] for i in range(len(ingredientlist)) if (ingredientlist[i] != ingredientlist_new[i])]
    
     
     # get new steps    
@@ -102,7 +104,7 @@ def replaceSteps(ingredientlist, steps):
                 if steps[i][j]['ingredients'][k] in ingreName_raw:
                     ind = ingreName_raw.index(steps[i][j]['ingredients'][k])
                     steps[i][j]['ingredients'][k] = ingreName_diff[ind][1]
-    
+
     # print        
     if ingreName_diff != []:
         for i in range(len(ingreName_diff)):
