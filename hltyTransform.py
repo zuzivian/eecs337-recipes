@@ -113,6 +113,8 @@ def replaceSteps(ingredientlist, steps):
         print('\n')
     else:
         print('\nIt is a healthy recipe already. No more transformation.')
+    
+    return steps
                 
 
 
@@ -123,5 +125,8 @@ def getHltyTrans(ingredientlist, steps):
     new_steps = replaceSteps(ingredientlist, steps)
         
     return [new_ingredientlist, new_steps]
+
+
+
 
 
