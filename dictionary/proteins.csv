@@ -6,7 +6,6 @@ chicken,animal,tempeh,animal,tempeh
 turkey,animal,mock duck,animal,mock duck
 duck,animal,mock duck,animal,mock duck
 groundmeat,animal,lentil,animal,lentil
-lamb,animal,beyond meat,animal,beyond meat
 mutton,animal,beyond meat,animal,beyond meat
 meatball,animal,meatless meatball,animal,meatless meatball
 veal,animal,seitan,animal,seitan
@@ -28,3 +27,6 @@ bacon,animal,veggie bacon,animal,veggie bacon
 lard,animal,coconut oil,animal,coconut oil
 eggs,vegetarian,,animal,fleggs
 steak,animal,eggplant,animal,eggplant
+alligator,animal,lentil,animal,lentil
+crawfish,animal,seitan,animal,seitan
+shrimp,animal,tofu,animal,tofu
