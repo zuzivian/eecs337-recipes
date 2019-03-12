@@ -107,8 +107,10 @@ def replaceSteps(ingredientlist, steps):
 
     # print        
     if ingreName_diff != []:
+        print('\nHealthy transformation:')
         for i in range(len(ingreName_diff)):
-            print('\nHealthy transformation:\n',quantity_diff[i][0], meas[i], ingreName_diff[i][0], '-->', quantity_diff[i][1], meas[i], ingreName_diff[i][1])
+            print(quantity_diff[i][0], meas[i], ingreName_diff[i][0], '-->', quantity_diff[i][1], meas[i], ingreName_diff[i][1])
+        print('\n')
     else:
         print('\nIt is a healthy recipe already. No more transformation.')
     
@@ -123,5 +125,8 @@ def getHltyTrans(ingredientlist, steps):
     new_steps = replaceSteps(ingredientlist, steps)
         
     return [new_ingredientlist, new_steps]
+
+
+
 
 
