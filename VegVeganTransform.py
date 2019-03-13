@@ -62,7 +62,7 @@ def ingredToVeg(inglist, masterdata, qtype = "veg"):
                                 replacedict[possibleWord[1]] = typereplace
                         replacedict[ingfull['name']] = typereplace
                         replacedict[item] = typereplace
-                        pprint("--substitute " + item + " by " + typereplace + "--\n")
+                        print("--substitute " + item + " by " + typereplace + "--\n")
                     else:
                         typereplace = item
     return replacedict
@@ -86,21 +86,21 @@ def replaceIngrInSteps(steps, replacementdict):
 def replaceIngrInIngrs(ingredients, replacementdict):
     for item in ingredients:
         if 'broth' in item['name'] or 'stock' in item['name']:
-            pprint("--substitute " + item['name'] + " by " + "vegetable broth" + "--\n")
+            print("--substitute " + item['name'] + " by " + "vegetable broth" + "--\n")
             item['name'] = "vegetable broth"
         if 'sausage' in item['name']:
-            pprint("--substitute " + item['name'] + " by " + "mock duck sausage" + "--\n")
+            print("--substitute " + item['name'] + " by " + "mock duck sausage" + "--\n")
             item['name'] = "mock duck sausage"
         if item['name'] in list(replacementdict.keys()):
             tobereplace = item['name']
             item['name'] = replacementdict[tobereplace]
             if item['measurement'] == 'NoItem':
                 item['measurement'] = 'pounds'
-    pprint("\n")                 
+    print("\n")                 
     return ingredients
 
 def TransToVeggie(ingredients, steps, masterdata):
-    pprint("Vegetarian transformation: \n")
+    print("Vegetarian transformation: \n")
     rep_dict = ingredToVeg(ingredients, masterdata, "veg")
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)
@@ -110,7 +110,7 @@ def TransToVeggie(ingredients, steps, masterdata):
         return [ingredients, steps]
 
 def TransToVegan(ingredients, steps, masterdata):
-    pprint("Vegan transformation: \n")
+    print("Vegan transformation: \n")
     rep_dict = ingredToVeg(ingredients, masterdata, "vegan")
     if len(rep_dict) > 0:
         newingr = replaceIngrInIngrs(ingredients, rep_dict)
