@@ -22,6 +22,18 @@ def main():
     ingredients = GetIngredients(text)
     print("\n" + "".join(text))
 
+    print("Ingredients:")
+    for ingredient in ingredients:
+        pprint(ingredient)
+    print("\n\nDirections:")
+    for step in steps:
+        print("step:")
+        for substep in step:
+            print("substep:")
+            pprint(substep)
+
+
+
     while True:
         print(menu)
         transform = int(input('Choose a transformation: '))
