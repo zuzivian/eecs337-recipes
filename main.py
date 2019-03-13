@@ -65,10 +65,10 @@ def main():
                 print(GetTools(text))
 
             else:
-                index=0
+                index=1
                 for step in steps:
 
-                    print("Step:"+str(index))
+                    print("Step"+str(index)+":")
                     for substep in step:
                         print("substep:")
                         pprint(substep)
