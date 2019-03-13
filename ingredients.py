@@ -90,6 +90,7 @@ def getName(line):
 			if lib[i][1] in ['TO','IN']:
 				end=i
 				res=' '.join(i for i in line.split()[index:end])
+				break
 		res=' '.join(i for i in line.split()[index:])
 		return RemovePunctuation(res.strip())
 
